@@ -3,7 +3,8 @@ Arduino IDE ESP32 all-in-one WIFI NAT, MQTTs Broker and client app
 
 ESP32/Arduino sketch to combine some code fragments from other PlatformIO/ESPIDF sources.
 Background: I wanted to have a combined solution in one ESP32 for a control app and found different pieces of code for PlatformIO and ESPIDF which I tried
-to combine in one Arduino IDE sketch for simplicity. I also wanted a secure MQTT broker in the core and easy setup and OTA update.
+to combine in one Arduino IDE sketch for simplicity. I also wanted a secure MQTT broker in the core and easy configuration and OTA update via web page.
+The web page is password protected.
 
 # NAT Router
 ESP32 NAT code inspired by https://github.com/paclema/esp32_lwip_nat_example
