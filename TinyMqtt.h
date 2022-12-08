@@ -324,6 +324,11 @@ class MqttBroker
     void begin() {
       server->start();  // start HTTP(S) server
     }
+    void setlogin(char * username, char * password) { // data must be static
+      auth_user = username;
+      auth_password = password;
+    }
+
     void loop();
 
     void connect(const std::string& host, uint16_t port = 1883);
@@ -368,8 +373,8 @@ class MqttBroker
     std::vector<MqttClient*>	clients;
     TcpServer* server;
 
-    const char* auth_user = "guest";
-    const char* auth_password = "guest";
+    const char* auth_user = "";
+    const char* auth_password = "";
     State state = Disconnected;
 
     MqttClient* broker = nullptr;

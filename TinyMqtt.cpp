@@ -524,15 +524,17 @@ void MqttClient::processMessage(MqttMessage* mesg)
       if (mqtt_flags & FlagUserName)
       {
         mesg->getString(payload, len);
-        //if (!parent->checkUser(payload, len)) break;
+        if (!parent->checkUser(payload, len)) break;
         payload += len;
       }
+      else if (parent->auth_password[0]) break; // if we should have one break
       if (mqtt_flags & FlagPassword)
       {
         mesg->getString(payload, len);
-        //if (!parent->checkPassword(payload, len)) break;
+        if (!parent->checkPassword(payload, len)) break;
         payload += len;
       }
+      else if (parent->auth_user[0]) break; // if we should have one break
 
       Serial << "Connected client:" << clientId.c_str() << ", keep alive=" << keep_alive << '.' << endl;
       bclose = false;
@@ -685,9 +687,9 @@ void MqttClient::processMessage(MqttMessage* mesg)
   if (bclose)
   {
     Serial << "*************** Error msg 0x" << _HEX(mesg->type());
-    mesg->hexdump("-------ERROR ------");
-    dump();
-    Serial << endl;
+    //mesg->hexdump("-------ERROR ------");
+    //dump();
+    Serial << endl << "end dump" << endl;
     close();
   }
   else
