@@ -17,7 +17,8 @@ TinyMqtt broker code modified for use of ESP32_HTTPS_Server library for a simple
 Based on TinyMqtt https://github.com/hsaturn/TinyMqtt and ESP32_HTTPS_Server https://github.com/fhessel/esp32_https_server libraries.
 Just for my application needs I modified the TinyMqtt code and combined it with slightly adapted HTTPSServer and HTTPSConnection classes 
 as link to the ESP32_HTTPS_Server library to make use of HTTPSConnections instead of WiFiClient on the transport level.
-Password check, QoS, certificate check, retained messages etc. not checked/finished yet!
+Login setting for username and password and check added, default is "" "".
+QoS, certificate check, retained messages etc. not checked/finished yet!
 
 # MQTT client app
 Plus an example app which for simplicity connects locally to the MQTT broker as subroutine.
