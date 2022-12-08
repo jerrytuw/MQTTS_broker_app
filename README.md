@@ -8,7 +8,8 @@ The web page is password protected.
 
 # NAT Router
 ESP32 NAT code inspired by https://github.com/paclema/esp32_lwip_nat_example
-!Needs either ESP32 Arduino core 2.05 plus liblwip.a and libvfs.a update or an ESP32 Arduino core with NAPT compiled in 
+!Needs either ESP32 Arduino core 2.05 plus liblwip.a and libvfs.a update or an ESP32 Arduino core with NAPT compiled in.
+For updating NAPT support: (Windows) in C:\Users\xy\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.5\tools\sdk\esp32\lib replace the 2 files.
 Includes a modified version of a configuration web interface including OTA support
 
 # TinyMqttSecure
