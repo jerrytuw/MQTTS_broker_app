@@ -6,10 +6,11 @@
 
 void outstring(const char* prefix, const char*p, uint16_t len)
 {
-  return;
+#ifdef TINY_MQTT_DEBUG
   Serial << prefix << "='";
   while (len--) Serial << (char)*p++;
   Serial << '\'' << endl;
+#endif
 }
 
 MqttBroker::MqttBroker(SSLCert * cert, uint16_t port)
@@ -536,7 +537,7 @@ void MqttClient::processMessage(MqttMessage* mesg)
       }
       else if (parent->auth_user[0]) break; // if we should have one break
 
-      Serial << "Connected client:" << clientId.c_str() << ", keep alive=" << keep_alive << '.' << endl;
+      //Serial << "Connected client:" << clientId.c_str() << ", keep alive=" << keep_alive << '.' << endl;
       bclose = false;
       mqtt_connected = true;
       {
@@ -686,10 +687,10 @@ void MqttClient::processMessage(MqttMessage* mesg)
   };
   if (bclose)
   {
-    Serial << "*************** Error msg 0x" << _HEX(mesg->type());
+    //Serial << "*************** Error msg 0x" << _HEX(mesg->type());
     //mesg->hexdump("-------ERROR ------");
     //dump();
-    Serial << endl << "end dump" << endl;
+    //Serial << endl << "end dump" << endl;
     close();
   }
   else
@@ -812,7 +813,7 @@ void MqttMessage::incoming(char in_byte)
       break;
     case Complete:
     default:
-      Serial << "Spurious " << _HEX(in_byte) << endl;
+      //Serial << "Spurious " << _HEX(in_byte) << endl;
       hexdump("spurious");
       reset();
       break;
@@ -886,7 +887,7 @@ void MqttMessage::hexdump(const char* prefix) const
   const char* separator = hex_to_str;
   const char* half_sep = " - ";
   std::string ascii;
-
+#ifdef TINY_MQTT_DEBUG
   Serial << prefix << " size(" << buffer.size() << "), state=" << state << endl;
 
   for (const char chr : buffer)
@@ -915,4 +916,5 @@ void MqttMessage::hexdump(const char* prefix) const
   }
 
   Serial << endl;
+#endif
 }

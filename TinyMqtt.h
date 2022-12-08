@@ -31,7 +31,7 @@ using namespace httpsserver;
 #include <set>
 #include <string>
 #include "StringIndexer.h"
-#include "MqttStreaming.h"
+//#include "MqttStreaming.h"
 
 //#define TINY_MQTT_DEBUG
 
@@ -248,6 +248,7 @@ class MqttClient
 
     void dump(std::string indent = "")
     {
+#ifdef TINY_MQTT_DEBUG
       (void)indent;
       uint32_t ms = millis();
       Serial << indent << "+-- " << '\'' << clientId.c_str() << "' " << (connected() ? " ON " : " OFF");
@@ -266,6 +267,7 @@ class MqttClient
         Serial << ']';
       }
       Serial << endl;
+#endif
     }
     void setConnection(HTTPConnection* conn) {
       connection = conn;

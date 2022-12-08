@@ -279,8 +279,9 @@ void setup() {
     //Serial.printf("Heap before: %d\n", ESP.getFreeHeap());
     Serial.println();
   }
+  broker.setlogin("user", "pass");
   broker.begin();
-  Serial << "MQTTS broker ready @: " << WiFi.softAPIP() << " on port " << PORT << endl;
+  Serial.printf("MQTTS broker ready @: %s on port %d\n", WiFi.softAPIP().toString().c_str() , PORT);
 
   fillPage();
 
