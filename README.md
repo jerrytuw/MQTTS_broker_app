@@ -25,5 +25,7 @@ Plus an example app which for simplicity connects locally to the MQTT broker as 
 
    Essential function tested:
     Sketch for WIFI NAT plus simple MQTTS broker allowing communication of several MQTTS clients via e.g. port 8883 with TLS with a local client app.
+    
+    Note: streaming functions only necessary for debugging placed in extra file MqttStreaming.h
 
 ## Provided as is.
